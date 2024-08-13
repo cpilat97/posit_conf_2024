@@ -1,0 +1,156 @@
+---
+title: "CP - Posit Conf Notes, 2024"
+format: 
+  html: 
+    toc: true
+    toc-location: "left"
+---
+
+## 2024-08-13 
+
+### Keynote - Updates from Posit @ 0900hrs
+
+  - Updated versions of Quarto support `typst` for better, faster rendering of PDF docs. 
+      - Fast, easy, customizable
+      - A key power here is that html tables are easily converted under-the-hood and won't really break anything. 
+  - Native `julia` engine now as well
+  - TONS of quarto extensions 
+    - Find Extensions - m.canouil.dev/quarto-extensions/
+  - R for WebAssembly 
+    - webR - executing R code in the web browser
+    - webr.r-wasm.org
+    - `WebAssembly`
+      - Portable binary code format
+      - high-perf webapps
+      -most mod browsers
+    - Shinylive 
+    - `Quarto Live` - interactive docs & code exercises in Quarto powered by wasm
+      - using a `webr` codeblock if you have the quarto webr extensions download
+  - Snowflake & Databricks integrations
+    - Infrastructure Management
+    - Data Access
+    - Application Deployment
+
+### Positron Track - 1020 - 1140hrs
+
+#### Exploratory Data Science with Python & Positron - Isabel Zimmerman
+
+  - The data science life cycle doesn't really change even if the tools we use change
+  - How does Positron support DS? 
+    - Similar to RStudio - you have a sandbox w/ console, text editor, variable panes, and plot viewers
+  - Interpreter selector that allows you to quickly select between python & r versions
+    - Will remember per projects what versions of stuff you're using
+  - DS is very experimental, iterative work: so you have an interactive, built-in console (much like R)
+  - The connections pane give s you more information regarding what tables are in your db. 
+  - Positron has a built in help pane much like rstudio, allowing you to grab the information directly in the IDE. 
+
+
+#### Data Explorer in Positron - Tom Mock 
+
+  - Summary Panels associated with the data viewer
+    - Col Types, persistent filter bar, & summary panel
+  - Data Viewer Grid
+  - Grid design: R (dfs, tibble, data.table) & python (polars, pandas)
+  - The code you write will automatically update the viewer (no more refreshing like in rstudio). 
+  - Highly scalable: 
+    - Handles millions of rows & Millions of columns
+  - Sort multiple columns at a time and it will number them so you can keep track of whats going on. 
+  - Auto column width
+  - Filter bar sits outside the data with a designated design so it keeps you aware of things going on. 
+  - Summary Panel design 
+    - Type & name 
+    - Missing data views so you don't need to do operations to find these
+  - Upcoming: 
+    - Sparkline histograms
+    - Remote database conns
+
+#### How Positron Works - Jonathan McPHerson
+
+  - Why no build on RStudio? 
+    - It was difficult to iterate on RStudio when trying to build out a polyglot IDE
+    - RStudio is a 2 process sys. 
+      - 1 process runs R, saves files, ui, etc... (which is why it gets slow when things are computing)
+      - 1 process is electron - the browser
+    - Python needs to run inside of R 
+    - Theres also a choice between data featurues or IDE features
+  - Positron is a fork of Code OSS
+    - Which is the foundation of VSCode
+    - Cursor AI Editor
+    - and now Positron
+    - what does this ultimately mean? You can sep the IDE and add in many things to it
+  - Why not just build an extension to VSCode? 
+    - Extensions are separate from the IDE, they're their own sandbox. So extensions are rather limited
+    - Ephemeral & restarted any time
+    - Stop running 
+    - Doesn't make sense as a foundation for other extenstions
+  - How does R & Py talk w/ these extensinos
+    - R talks to the R Extension which talks to the VS Code API ( code completion & debugs) &&&& the positron ide for viewers, 
+    - R & Python are treated as extensions...why is this important? When something Crashes, the ide just plugs along there's no restarting the entire ide
+    - Allows Positron to extend to other langs in the future (eg `Julia`)
+    - Theres a public API that anyone can write to and that can be brought to the positron core
+  - Positron uses standard protocols for standard funcs
+    - meaning they use protocols that are standard throughout the DS community
+
+#### Introducing Ark, Modern tooling for R - Lionel Henry & Davis Vaughan
+
+  - Positron is multi-lingual 
+  - Scope now includes Python
+  - Where is R left? 
+  - Ark
+    - Ark is behind all the auto completions that happen
+    - When you're looking for outputs, it goes through Ark
+    - Ark is: 
+      - Execution: 
+      - Assistance: Completions, etc...
+      - Debugger 
+  - Ark Execution: 
+    - Think of code executions as a question. You hit `cmd + enter` asking the code question. 
+    - Ark "answers" the question, displaying the results in the console
+    - How does this work? 
+      - Ark is a jupyter kernal
+      - executes the jupyter protocol
+  - Code assistance when writing R code
+    - Code assistance could look like function signature
+    - Code completion
+    - Jumping to the function definition
+    - Unique to Positron: 
+      - Help on hover: in-line documentation
+    - These features are similar to the code execution: asking questions & sending back answers. 
+    - Built on the language server protocol. 
+      - Eg send a "hover-request" send back a "hover response"
+  - The "smarts" of Ark is from `tree-sitter` 
+    - This is structured representaitons of code
+    - The R grammer for tree-sitter needed to be built....which is what Posit did!
+    - Github uses tree-sitter. 
+      - Posit worked w/ Github to incorportate the R grammer tree-sitter protocol and it works across github now
+  - The "debugger"
+    - Debuggers allow you to step through code that's throwing an error. 
+    - The debugger was implemented via a standardized set of questions and answers
+    - The debugger uses the debug adapter protocol
+    - Positron will bring you to the cpp code of dplyr
+  
+
+  **IMPORTANT** So it seems like one of the biggest advantages here with Positron is that it's implementing a lot of standard protocols that many other languages may have which means we can now take advantage of these protocols ALONG with R and benefit everywhere. 
+
+#### Positron for R and RSudio Users - Jenny Bryan
+
+  - Tips for testdriving Positron
+    - Use **workspaces** which is a core concept, and tehse are just folders (analagous to `.Rproject`)
+      - Once you're in a folder, everything kinda comes to life
+    - Easy to use multiple versions of R and switching between them with fluidity. 
+      - Console will always tell you what you're using
+      - `rig` package
+        - allows you manage multiple R installs (particularlly for macOS users). 
+        - r-lib/rig
+  - New defaults!
+    - Blank slate lifestyle (no saved workspaces, etc...)
+  - Command Palette is a core concept in Positron
+  - Things that are available in panes in RStudio might be brought into the command palette of positron. 
+  - Customizing your layout
+  - Exentsions from Open VSX
+    - indent-rainbow
+    - project manager
+  - The little flask icon is for your tests & `testthat`
+  - 
+
+
