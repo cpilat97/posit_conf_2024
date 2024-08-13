@@ -153,4 +153,77 @@ format:
   - The little flask icon is for your tests & `testthat`
   - 
 
+The rsconnect publisher is an extension
+
+
+
+### Strengthening the R Ecosystem
+
+#### 20+ Years of Reading Data into R - Colin Gillespie
+
+Larger files --> Data --> File Formats --> Engine --> Results
+
+  - So now we have nanoparquet: https://nanoparquet.r-lib.org/
+  - Parquet vs RDS: (example compare)
+    - RDS uses gzip
+      - 115mb
+      - write speed: 27sec 
+      - read speed 5.7sec
+    - parquet uses snappy 
+      - 143mb
+      - Write speed: 4sec
+      - read speed: .3sec
+    - parquet also uses gzip (depending)
+      - 105mb
+      - write speed: 12sec
+      - read speed .4 sec
+  - `duckdb`
+    - using dplyr + duckplyr
+    - results
+  - Why load data into duckdb? 
+    - Its faster 
+    - Repeated queries
+    - Joins
+  - lots of blog posts on jumpingrivers.com
+
+#### Contributing to the R project
+
+  - contributor.r-project.org
+
+
+### Innovating with Shiny - 1440hrs
+
+#### Wait, that’s Shiny? Building feature-full, user-friendly interactive data explorers with Shiny and friends - Kiegan Rice
+
+  - Can shiny do that? 
+    - Give a home page, somewwhere to land. ho they can explore, etc....
+    - Add about & methodology pages 
+    - These are some of the basics you can start with. 
+  - Taking things a step further
+    - Adding in sub-urls via routing
+    - Change things reactively based on users selection. 
+    - Adding context for what a user is seeing
+    - Using shiny bookmarking to save the state of an app
+      - Be unconventional about it if you need to be
+    - Think about what users want to learn and whwat they might have questions about. 
+    - Flip the way you think about the questions and what you want the app to do 
+  - Why use shiny to do something? 
+  - Why should i do that in shiny? 
+    - Draw them in
+    - Understand where data comes rom 
+    - Show specific views
+    - Have ways to explore their own data
+  - What do you need? 
+    - Understanding the data structure
+    - Someone who can build the interface 
+    - Connections between the data and the interface
+    - Luckily, shiny devs can do all this 
+  - sample rep: github.com/kiegan/wait-thats-shiny
+
+#### We CAN have nice Shiny apps: What's new in Shiny's UI & UX - Greg Swinehart
+
+
+#### Making an App a System - Andrew Bates
+
+#### Empowering Decisions: Advanced Portfolio Analysis and Management through Shiny - Lovekumar Patel
 
