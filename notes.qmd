@@ -222,8 +222,51 @@ Larger files --> Data --> File Formats --> Engine --> Results
 
 #### We CAN have nice Shiny apps: What's new in Shiny's UI & UX - Greg Swinehart
 
+  - Yes, yes we can 
+  - `bslib` package
+    - Lots of many small quality of life improvements from shiny past to today
+  - Shiny Components Gallery (component cheat sheet)
+  - Shiny Layouts
+  - Shiny Templates (really only shiny for python)
 
 #### Making an App a System - Andrew Bates
 
+  - Best practices for app reusability
+
 #### Empowering Decisions: Advanced Portfolio Analysis and Management through Shiny - Lovekumar Patel
+
+## 2024-08-14
+
+### Keynote - A Future of Data Science - Allen Downey - 0900hrs
+
+  - Data science is a set of tools and processes for ansering questions, resovling debates, and setting standards
+  - The gartner hype cycle
+    - tech trigger
+    - peak of expectations
+    - disillousenment
+    - slope of enlightnment
+    - plateu of progress
+  - DS exists b/ statistics missed the boat on computers (lol)
+  - Stats try to say all the problems have been solved
+  - BUT DS says none of the problems have been solved and we need a set of virtual tools to solve these
+  - Variability Hypothesis
+  - slop of enlightment: (where we can go from the trough of disillusionment)
+    - Data Journalism is sneakily improving data literacy in general
+    - complimenting the data capability of governments
+    - Improving data literacy 
+    - More access to data in general
+  - Factfulness - Hans Rosling
+  - On long-term trends, almost everything is getting better, and we still have challenging problems, AND our history suggests we can solve them. 
+    - Not the end of the world - Hannah Ritchie
+  - Negativity bias is a serious threat to our well being b/c it undermines our ability to address the things that actually need to be addressed
+  - Use data to understand the world better so we know how to make the world better 
+  - Some resources: 
+    - Think Stats (oreilly book) - greenteapress.com
+    - Elements of Data Science - Allen Doney
+    - BRFSS (cdc)
+    - Probably overthinking it - ALlen Downey
+    - tinyurl.com/dow24pos
+    - 
+
+
 
