@@ -1,0 +1,4 @@
+venv/lib/*
+venv/share/*
+venv/bin/*
+venv/*

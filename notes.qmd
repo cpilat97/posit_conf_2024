@@ -4,6 +4,7 @@ format:
   html: 
     toc: true
     toc-location: "left"
+    page-layout: "full"
 ---
 
 ## 2024-08-13 
@@ -266,7 +267,239 @@ Larger files --> Data --> File Formats --> Engine --> Results
     - BRFSS (cdc)
     - Probably overthinking it - ALlen Downey
     - tinyurl.com/dow24pos
+
+### Session 1 - Data Engineering - 1020-1140hrs
+
+#### Reclaiming your weekend with Data Contracts - Nick Pelikan
+
+  - Trust in your outputs is **critical** to be a successful ds team...but how much control do you have over your data *inputs*? 
+  - `data mesh` - decentralizing the data architecture 
+  - which leads to three problems: 
+    - Reliability: will the data be there? 
+    - Consistency: data changing? 
+    - Autonomy: Can i build things myself? 
+  - How do we solve this? Data Contracts 
+    - Agreement b/w data producers and data consumers...this means it does not have to include technology. Its ultimately an agreement 
+  - What makes a good data contract? 
+    - People: 
+      1. Contract owner
+      2. Responsible
+      3. Consulted
+    - Expectations: 
+      1. Schema
+      2. Valid Values
+      3. SLAs
+      4. Interface
+      5. Compliance
+      6. Interop
+  - So who builds the contracts? Producers? Consumers? 
+    - both...its a collab effort not one or the other
+  - Tech is helpful but not everything
+  -Existing framewlrks: 
+    - Many advantages - integrations, easy to standup
+    - but have disadvs: single lang, new api, dont encode ownership
+  - Literate contracts 
+    - Multiglingual, ownership is defined, integrate with existing frameworks
+    - but....it adds aditional steps, and since it's more verbose its more effort
+  - Theres no right answer, pick a tech that works best for you
+  - Adopting data contracts in your org 
+    - Expect resistances
+    - Articulate value - whats the business val? 
+    - Keep it simple - save time & build credibility
+
+#### Demystifying Data Modeling - Kshitij Aranke (dbt labs)
+
+  - Data modeling for data engineers
+  - what is data modeling
+  - Why it's important
+  - How to get started with it
+  - Starting with data extracting, then transforming and prep, then assemble your df
+    - Visualizing then building
+  - The idea is taking these vague big prompts that we might get from a stakeholder or leadership, etc..., teasing it apart, and working through the specific asks. 
+    - It ultimately becomes the analytics workflow: 
+      - Raw data 
+      - Transform 
+      - Data [cleaned]
+      - output --> ml, bi, op analytics
+  - Can we doc & test the workflows though? 
+    - your docs might include the general schema of what you're doing, who owns that dataset, the tests important for the tables, etc... 
+    - documenting terms and what they mean. 
+    - By documenting, `tests` should flow out of the documentation 
+  - Data quality pattern
+    - write
+      - when you're writing new data, you're writing it to a staging platform that goes through tests before sending it to production becuase it's then high-quality
+    - audit
+    - publish
+  - standardization is an important part of a data engineers jobs
+  - a data model is a structured rep that orgs and standardizes data to enable & guide human and machine behavior, inform decision-making, and facilitate actions. 
+  - data modeling helps you scale
+  - how do you get started? 
+    - its a process: start small, keep iterating, and have fun
+  - data modeling toolkit
+  - data modeling is a tool-agnostic process
+  - fundamentals of data engineering (book rec)
+
+#### {mirai} and {crew}: next-generation async to supercharge {promises}, Plumber, Shiny, and {targets} - Charlie Gao and Will Landau
+
+  - what is next gen async? 
+    - what do we mean?: essentially not waiting around while multiple things happen at once
+  - Hows this currently working in `R`? 
+    - Well, async is not a first-class async
+    - `parallel` is parallel, not async, meaning you still have to wait around for results to return before moving on in your session. 
+    - {future} relise on {parallelly} and blocks tasks if theres more going on then the number of workers available
+  - Brining first class async to R
+    - `nanonext` brings NNG to R
+  - `mirai`
+    - minimalist async eval framework for R
+    - Simply japanese for *future*
+    - mirai uses nanonext to deliver first-class async
+    - connect thousands of parallel processes and tasks all at once
+    - responsive (in the microsecond range)
+  - Currently, we use promises 
+    - a promising object 
+    - `future` which blocks the session
+    - future_promise() has never exited experimental
+    - Requires constant polling for resolution of each promise
+  - Mirai is a promising object
+    - native shiny/plumber driven
+    - event driven (no polling)
+  - `crew` package is an extension built upon `mirai`
+    - mirai, crew, cre.cluster, crew.aws.batch
+    - crew provides auto-scaling
+    - plug-in access
+    - mirai provides low-overhead interprocess comms
+  - How does this work? 
+    - Crew has a controller & workers (which are R processes)
+    - `mirai::daemons()`
     - 
 
+#### Deploying data applications and documents to the cloud - Alex Chisholm
 
 
+### Session 2 - R & Python - 1300hrs
+
+
+#### Mixing R, Python, and Quarto: Crafting the Perfect Open Source Cocktail - Alenka Frim and Nic Crane
+
+  - Everyone should be allowed to contribute in their own way. 
+    - Contribute different skill sets
+    - Choose right tools
+  - Building diverse collaborations 
+    - Dashboard content
+    - actions
+  - you'll go much further working together than trying to work alone
+
+#### Python Rgonomics - Emily Riederer 
+
+  - The "Rgonomic" stack: 
+  - Data Exploration
+    - Polars
+      - Functional paradigm & expansive api
+      - Highly performant
+  - human-centered syntactic sugar
+  - Visualizations: 
+    - Plotnine: a high-fidelity clone of ggplot
+    - seasborn: Similar philosophy of ggplot with its own pythonic syntax
+  - Quarto balances interactivity and reproducibility and gets away from some of the BS with Jupyter notebooks
+  - Great Tables package
+    - isn't a direct clone of the GT package but rather trys to leverage some of the python powers while giving a similar experiences
+  - So where to start? 
+    - Dependency management woes
+
+
+
+#### Quarto Templates
+
+  - Why? 
+    - save time with specific implementations
+    - analytical skeleton
+  - how? 
+    - add custom css/scss files to the yaml
+    - you can tinker and add it right to the `theme` and `css` calls
+    - set up your text classes
+  - (Chrome) DevTools: right-click -> inspect 
+    - Then you can vie the skeleton of the rendered document. This will give you the div class and ids
+    - Bottom right shows all the styles that will be moved over
+    - USE THIS!!! When you come across other folks quarto docs, dive into it and inspect it. View whats going on. 
+  - mdm web docs (mozilla web docs). 
+    - has a ton of info on the css propoerties 
+  - How to share the templates? 
+    Do you have internal packages you can share? 
+    - make a function: eg `create_cfx_html()` with the files to copy & the function to copy the files. 
+      - Files to copy: 
+        - inst/ directory
+          - extdata/_extensions
+            - cfx-html
+              - styles.css
+              - theme.scss
+              - template.qmd
+  - meghan.rbind.io
+  - https://zelusanalytics.com/
+
+### Data Visualizations: Idea > Process > Sharing track - 1440hrs
+
+
+#### API-first package deisgn - Thomas Lin Pedersen
+
+  - There's really no upper bound for your data viz creations
+  - A good API design can help you achieve those upper bounds
+  - Have a mission
+    - Coherence doesn't just come organically
+    - Think about the cohesion upfront, starting with it and how you want things to work together. 
+    - missions can be contagious and go permeate through multiple projects
+  - Maintenance is  a constant battle against API impurity
+  - Simplicity
+  - NOTE: Theres been a ton of awesome updates to the `patchwork` package. 
+  - Embrace the "NO". 
+  - 
+
+  #### From idea to code to image: creative data viz in R
+
+  - Why? 
+    - Creative viz stands out
+    - Emotional connection, engagement
+    - Better and more clear comms
+    - Self-expressions
+  - Creativity
+    - Novelty: come up with something new
+    - Useful sols
+    - Transform and synthesize
+    - Connecting seemingly unrelated concepts
+  - R & ggplot2
+    - ggplot2 extensions
+  - The process: 
+    - Finding inspriation
+      - Look at other peoples works
+      - Dissect their choices 
+      - Imitate style or techniques
+      - Remix
+      - Try out new packages
+      - Look into charts typically used in other fields
+      - Sketch what you want to do 
+      - Try breaking the rules
+      - Try data art  
+    - Getting creative
+      - look at other peoples code (eg #tidytuesday)
+      - recreate data vizs made w/ other tools
+      - Try out diff options in ggplot2 funcs
+      - try to break things
+      - Creative use of geoms
+      - use text?? `geom_text()`
+      - Create your own geoms
+      - use `ggplot_build()`
+      - Participating in challenges: experiment, learn, get feedback
+    - Make it personal
+    
+#### Be Kind, Rewind - Ellis Hughes
+
+### Keynote 2 - Data Wrangling like a boss w/ DuckDB - Hannes Muhler
+
+  - Trad'l db sys's can be frustrating and slow
+  - duckdb can quickly modify csv to parquet `copy xxx.csv to xxx.parquet`
+  - Create duckdb files that stores the transactions and resulting files. 
+  - `duckdb` file format is now considered stable
+  - read remotely too
+  - The views are stored in the file as well. 
+  - now you can also create macros
+    - `create macro not_total(col) as col not like "xxx%"`
+  - 
